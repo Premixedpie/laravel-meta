@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsMetaTable extends Migration
+class CreateUserMetaTable extends Migration
 {
 
     /**
@@ -13,16 +13,16 @@ class CreatePostsMetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts_meta', function (Blueprint $table) {
+        Schema::create('user_meta', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('post_id')->unsigned()->index();
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('type')->default('null');
 
-            $table->string('key')->index();
-            $table->text('value')->nullable();
+            $table->string('meta_key')->index();
+            $table->text('meta_value')->nullable();
 
             $table->timestamps();
         });
@@ -35,7 +35,7 @@ class CreatePostsMetaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts_meta');
+        Schema::drop('user_meta');
     }
 
 }
