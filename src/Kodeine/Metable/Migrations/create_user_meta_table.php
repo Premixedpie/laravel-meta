@@ -17,12 +17,12 @@ class CreateUserMetaTable extends Migration
             $table->increments('id');
 
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
 
             $table->string('type')->default('null');
 
             $table->string('meta_key')->index();
-            $table->text('meta_value')->nullable();
+            $table->text('value')->nullable();
 
             $table->timestamps();
         });
